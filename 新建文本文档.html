@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星汇社电竞俱乐部 - 专业电竞体验</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 自定义Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // 电竞风格主色调：深蓝+霓虹紫+荧光绿
+                        neon: {
+                            blue: '#00f3ff',
+                            purple: '#9d00ff',
+                            green: '#00ff9d',
+                        },
+                        dark: {
+                            900: '#0a0a12',
+                            800: '#12121f',
+                            700: '#1e1e30',
+                        }
+                    },
+                    fontFamily: {
+                        gaming: ['Orbitron', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9d00ff, 0 0 20px #9d00ff' },
+                            '100%': { textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #9d00ff, 0 0 40px #9d00ff' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow-neon {
+                text-shadow: 0 0 8px theme('colors.neon.purple'), 0 0 15px theme('colors.neon.purple');
+            }
+            .bg-gradient-gaming {
+                background: linear-gradient(135deg, theme('colors.dark.900') 0%, theme('colors.dark.800') 50%, theme('colors.dark.700') 100%);
+            }
+            .border-glow {
+                box-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
+            }
+            /* LOGO专属样式 - 去除空白和优化显示 */
+            .logo-container {
+                background-color: transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .logo-img {
+                object-fit: contain;
+                object-position: center;
+                filter: drop-shadow(0 0 8px rgba(157, 0, 255, 0.6));
+            }
+        }
+    </style>
+    
+    <!-- 引入电竞风格字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 页面基础样式 */
+        body {
+            background-color: #0a0a12;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+        
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #12121f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9d00ff;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
+        
+        /* 按钮hover效果 */
+        .btn-gaming {
+            transition: all 0.3s ease;
+        }
+        .btn-gaming:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px theme('colors.neon.purple');
+        }
+        
+        /* 图片容器动画 */
+        .img-container {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .img-container img {
+            transition: transform 0.5s ease;
+        }
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-white font-sans">
+    <!-- 导航栏 -->
+    <nav class="sticky top-0 z-50 bg-dark-900/90 backdrop-blur-md border-b border-neon-purple/30">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- 俱乐部LOGO -->
+                <div class="logo-container w-16 h-16 mr-3">
+                    <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/f9cb5e5e82e94faabfb0b9f03a170355.jpg~tplv-a9rns2rl98-24:720:720.image?lk3s=8e244e95&rcl=20260117145652CB1048ECF67A0454FF02&rrcfp=8a172a1a&x-expires=1769237812&x-signature=QFm0wdlMg2i%2FagUV5ItMkKDK5Z0%3D" 
+                         alt="星汇社电竞俱乐部LOGO" 
+                         class="logo-img w-full h-full">
+                </div>
+                <!-- 俱乐部名称 -->
+                <h1 class="font-gaming text-[clamp(1.2rem,3vw,1.8rem)] font-bold text-shadow-neon">
+                    星汇社电竞俱乐部
+                </h1>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="font-gaming text-neon-blue hover:text-neon-purple transition-colors">首页</a>
+                <a href="#business" class="font-gaming text-white hover:text-neon-purple transition-colors">主营业务</a>
+                <a href="#contact" class="font-gaming text-white hover:text-neon-purple transition-colors">联系我们</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-white text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section id="home" class="py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="md:w-1/2 space-y-6">
+                    <h2 class="font-gaming text-[clamp(2rem,5vw,4rem)] font-extrabold leading-tight">
+                        <span class="text-white">星汇社</span>
+                        <span class="text-neon-purple animate-glow">电竞俱乐部</span>
+                    </h2>
+                    <!-- 客服联系方式（点击跳转图片） -->
+                    <a href="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/f9cb5e5e82e94faabfb0b9f03a170355.jpg~tplv-a9rns2rl98-24:720:720.image?lk3s=8e244e95&rcl=20260117145652CB1048ECF67A0454FF02&rrcfp=8a172a1a&x-expires=1769237812&x-signature=QFm0wdlMg2i%2FagUV5ItMkKDK5Z0%3D" target="_blank" class="inline-block">
+                        <button class="btn-gaming bg-neon-purple/20 hover:bg-neon-purple/30 text-white font-gaming px-8 py-3 rounded-lg border border-neon-purple/50 border-glow">
+                            <i class="fa-solid fa-headset mr-2"></i>
+                            客服微信：mxj20080827
+                        </button>
+                    </a>
+                </div>
+                
+                <!-- 电竞风格主视觉图（AI生成） -->
+                <div class="md:w-1/2 img-container">
+                    <img src="https://picsum.photos/seed/starclub-hero/800/600" alt="星汇社电竞俱乐部主视觉" 
+                         class="w-full h-auto rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主营业务区 - 仅保留三角洲行动专区 -->
+    <section id="business" class="py-20 bg-dark-800/50">
+        <div class="container mx-auto px-4">
+            <h2 class="font-gaming text-[clamp(1.8rem,4vw,3rem)] font-bold text-center mb-16 text-shadow-neon">
+                主营业务
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 仅保留三角洲行动专区 -->
+                <div class="bg-gradient-gaming rounded-xl p-8 border border-neon-blue/30 hover:border-neon-blue/60 transition-all mx-auto md:mx-0 max-w-lg">
+                    <div class="img-container mb-6 h-48">
+                        <img src="https://picsum.photos/seed/delta-action/600/400" alt="三角洲行动专区" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-gaming text-xl font-bold text-neon-blue mb-3">三角洲行动专区</h3>
+                    <p class="text-gray-300 mb-6">
+                        专业护航，陪玩
+                    </p>
+                    <!-- 三角洲行动专属按钮（点击跳转图片） -->
+                    <a href="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/f9cb5e5e82e94faabfb0b9f03a170355.jpg~tplv-a9rns2rl98-24:720:720.image?lk3s=8e244e95&rcl=20260117145652CB1048ECF67A0454FF02&rrcfp=8a172a1a&x-expires=1769237812&x-signature=QFm0wdlMg2i%2FagUV5ItMkKDK5Z0%3D" target="_blank">
+                        <button class="btn-gaming w-full bg-neon-blue/20 hover:bg-neon-blue/30 text-white font-gaming px-6 py-3 rounded-lg border border-neon-blue/50">
+                            <i class="fa-solid fa-crosshairs mr-2"></i>
+                            进入三角洲行动专区
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们区 -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="font-gaming text-[clamp(1.8rem,4vw,3rem)] font-bold text-center mb-16 text-shadow-neon">
+                联系我们
+            </h2>
+            
+            <div class="max-w-3xl mx-auto bg-dark-800/80 rounded-xl p-8 border border-neon-purple/30">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 联系方式 -->
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-neon-purple/20 rounded-full flex items-center justify-center mr-4 border border-neon-purple/50">
+                                <i class="fa-solid fa-phone text-neon-purple text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-gaming text-lg font-bold text-white">联系电话</h3>
+                                <p class="text-gray-300">1111111</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-neon-blue/20 rounded-full flex items-center justify-center mr-4 border border-neon-blue/50">
+                                <i class="fa-solid fa-weixin text-neon-blue text-xl"></i>
+                            </div>
+                            <!-- 客服微信（点击跳转图片） -->
+                            <div>
+                                <h3 class="font-gaming text-lg font-bold text-white">客服微信</h3>
+                                <a href="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/f9cb5e5e82e94faabfb0b9f03a170355.jpg~tplv-a9rns2rl98-24:720:720.image?lk3s=8e244e95&rcl=20260117145652CB1048ECF67A0454FF02&rrcfp=8a172a1a&x-expires=1769237812&x-signature=QFm0wdlMg2i%2FagUV5ItMkKDK5Z0%3D" target="_blank" class="text-neon-blue hover:underline">
+                                    mxj20080827 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        
+                    
+                    <!-- 替换二维码为LOGO图片 -->
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="logo-container w-48 h-48 mb-4">
+                            <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/f9cb5e5e82e94faabfb0b9f03a170355.jpg~tplv-a9rns2rl98-24:720:720.image?lk3s=8e244e95&rcl=20260117145652CB1048ECF67A0454FF02&rrcfp=8a172a1a&x-expires=1769237812&x-signature=QFm0wdlMg2i%2FagUV5ItMkKDK5Z0%3D" 
+                                 alt="星汇社电竞俱乐部" 
+                                 class="logo-img w-full h-full">
+                        </div>
+                        <p class="text-gray-300 text-center">星汇社电竞俱乐部</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- 简单的JS交互 -->
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 页面滚动时导航栏效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
